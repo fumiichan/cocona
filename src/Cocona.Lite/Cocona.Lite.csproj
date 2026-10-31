@@ -10,6 +10,8 @@
     <Description>Lightweight version of Cocona. Micro-framework for .NET console application. Cocona makes it easy and fast to build console applications on .NET.</Description>
 
     <DefineConstants>COCONA_LITE</DefineConstants>
+
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>

@@ -8,6 +8,7 @@
 
     <!-- NuGet Package Information -->
     <Description>Core component for Cocona. Micro-framework for .NET console application.</Description>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup Condition="('$(TargetFramework)' == 'netstandard2.0') Or ('$(TargetFramework)' == 'netstandard2.1')">
