@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -46,8 +45,9 @@ internal class BootstrapHostBuilder : IHostBuilder
             HostingEnvironment = new HostEnvironment(hostConfiguration[HostDefaults.ApplicationKey]!, contentRootPath, new PhysicalFileProvider(contentRootPath), hostConfiguration[HostDefaults.EnvironmentKey] ?? Environments.Production)
         };
 
-        var appLocation = Assembly.GetCallingAssembly().Location;
-        configuration.SetBasePath(Path.GetDirectoryName(appLocation)!);
+        // Single-file publish reports an empty Assembly.Location, so the directory
+        // containing the app comes from AppContext rather than the assembly path.
+        configuration.SetBasePath(AppContext.BaseDirectory);
         configuration.AddConfiguration(hostConfiguration, true);
         foreach (var action in _configureAppConfigs)
         {
